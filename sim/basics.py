@@ -65,6 +65,14 @@ class Pong (Packet):
   def __repr__ (self):
     return "<Pong " + str(self.original) + ">"
 
+class DiscoveryPacket (Packet):
+    """
+    A "link up/down" packet.
+    """
+    def __init__(self, src, is_link_up):
+        Packet.__init__(self, src=src)
+        self.is_link_up = upness
+
 class RoutingUpdate (Packet): 
     """
     A Routing Update message to use with your RIPRouter implementation.

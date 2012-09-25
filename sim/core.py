@@ -21,6 +21,8 @@ import weakref
 import logging
 import traceback
 
+from basics import DiscoveryPacket
+
 class EventLogger (logging.Handler):
   _attributes = [
     'created','filename','funcName','levelname','levelno','lineno',
@@ -288,10 +290,12 @@ class TopoNode (object):
     if cable[0] is not None:
       c = fixCableEnd(cable[0], self, localPort, topoEntity, remotePort)
       self.ports[localPort] = c
+      self.send(DiscoveryPacket(self.entity, True), localPort)
 
     if cable[1] is not None:
       c = fixCableEnd(cable[1], topoEntity, remotePort, self, localPort)
       topoEntity.ports[remotePort] = c
+      topoEntity.send(DiscoveryPacket(topoEntity, True), remotePort)
 
     world.doLater(.5, events.send_link_up, self.entity.name, localPort,
              topoEntity.entity.name, remotePort)
@@ -308,6 +312,9 @@ class TopoNode (object):
       events.send_link_down(self.entity.name, index, other.entity.name, otherPort)
       other.ports[otherPort] = None
       self.ports[index] = None
+
+      self.send(DiscoveryPacket(self.entity, False), index)
+      self.send(DiscoveryPacket(other, False), otherPort)
 
     remove = [index for index,value in enumerate(self.ports)
               if value is not None and value.dst is topoEntity]
