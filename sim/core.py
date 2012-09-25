@@ -30,23 +30,23 @@ class EventLogger (logging.Handler):
 
   #  def __init__ (self, *args, **kw):
   #  logging.Handler.__init__(self, *args, **kw)
-    
+
   def emit (self, record):
     o = {'message' : self.format(record)}
     o['type'] = 'log'
     if True:
-      for attr in self._attributes: 
+      for attr in self._attributes:
         if hasattr(record, attr):
-          o[attr] = getattr(record, attr) 
+          o[attr] = getattr(record, attr)
       fmt = self.formatter
       if fmt is None:
         fmt = logging._defaultFormatter
       o['asctime'] = fmt.formatTime(record)
-      if record.exc_info: 
-        o['exc_info'] = [str(record.exc_info[0]), 
-                         str(record.exc_info[1]), 
-                         traceback.format_tb(record.exc_info[2],1)] 
-        o['exc'] = traceback.format_exception(*record.exc_info) 
+      if record.exc_info:
+        o['exc_info'] = [str(record.exc_info[0]),
+                         str(record.exc_info[1]),
+                         traceback.format_tb(record.exc_info[2],1)]
+        o['exc'] = traceback.format_exception(*record.exc_info)
     events.send_log(o)
 
 if not sys.modules['__main__'].__dict__.get("_DISABLE_CONSOLE_LOG", False):
@@ -232,7 +232,7 @@ class TopoNode (object):
     o = []
     for n,p in enumerate(self.ports):
       if p is not None:
-        o.append((self.entity.name,n,p.dstEnt.name,p.dstPort)) 
+        o.append((self.entity.name,n,p.dstEnt.name,p.dstPort))
     return o
 
   def __init__ (self, numPorts = 0, growPorts =  True):
@@ -294,10 +294,10 @@ class TopoNode (object):
       c = fixCableEnd(cable[1], topoEntity, remotePort, self, localPort)
       topoEntity.ports[remotePort] = c
       world.doLater(.5, topoEntity.entity.handle_link_up, remotePort, self.entity)
-  
+
     world.doLater(.5, events.send_link_up, self.entity.name, localPort,
              topoEntity.entity.name, remotePort)
-    
+
     return (localPort, remotePort)
 
   def unlinkTo (self, topoEntity):
@@ -368,7 +368,7 @@ class TopoNode (object):
           import basics
           if isinstance(packet, basics.RoutingUpdate):
             p.paths = copy.copy(packet.paths)
-          remote.transfer(p) 
+          remote.transfer(p)
 
 
 def _getByName (name):
@@ -396,9 +396,9 @@ def CreateEntity (_name, _kind, *args, **kw):
 
   te = TopoNode(numPorts, growPorts)
   te.entity = e
- 
+
   kind = "host" if isinstance(e, api.HostEntity) else "switch"
-  world.do(events.send_entity_up,e.name, kind)  
+  world.do(events.send_entity_up,e.name, kind)
   simlog.info(e.name+" up!")
 
   # Add working methods
