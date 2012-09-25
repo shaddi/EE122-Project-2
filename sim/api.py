@@ -114,26 +114,6 @@ class Entity (object):
     """
     pass
 
-  def handle_link_up (self, port, entity):
-    """
-    Called by the framework when this Entity is connected to another
-    entity.
-    port is the port number that was connected.
-    entity is the other entity that was connected.
-    You may want to override it.
-    """
-    pass
-
-  def handle_link_down (self, port, entity):
-    """
-    Called by the framework when this Entity is disconnected from another
-    entity.
-    port is the port number that was disconnected.
-    entity is the entity to which it was previously connected.
-    You may want to override it.
-    """
-    pass
-
   def set_debug (self, *args):
     """
     Turns all arguments into a debug message for this Entity.

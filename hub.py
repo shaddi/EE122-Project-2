@@ -11,13 +11,3 @@ class Hub (Entity):
     in on.
     """
     self.send(packet, port, flood=True)
-
-  def handle_link_up (self, port, entity):
-    """
-    Do nothing
-    """
-
-  def handle_link_down (self, port, entity):
-    """
-    Do nothing
-    """ 

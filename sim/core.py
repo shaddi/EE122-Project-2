@@ -288,12 +288,10 @@ class TopoNode (object):
     if cable[0] is not None:
       c = fixCableEnd(cable[0], self, localPort, topoEntity, remotePort)
       self.ports[localPort] = c
-      world.doLater(.5, self.entity.handle_link_up, localPort, topoEntity.entity)
 
     if cable[1] is not None:
       c = fixCableEnd(cable[1], topoEntity, remotePort, self, localPort)
       topoEntity.ports[remotePort] = c
-      world.doLater(.5, topoEntity.entity.handle_link_up, remotePort, self.entity)
 
     world.doLater(.5, events.send_link_up, self.entity.name, localPort,
              topoEntity.entity.name, remotePort)
@@ -310,15 +308,6 @@ class TopoNode (object):
       events.send_link_down(self.entity.name, index, other.entity.name, otherPort)
       other.ports[otherPort] = None
       self.ports[index] = None
-
-      try:
-        other.entity.handle_link_down(otherPort, self.entity)
-      except:
-        traceback.print_exc()
-      try:
-        self.entity.handle_link_down(index, other.entity)
-      except:
-        traceback.print_exc()
 
     remove = [index for index,value in enumerate(self.ports)
               if value is not None and value.dst is topoEntity]
