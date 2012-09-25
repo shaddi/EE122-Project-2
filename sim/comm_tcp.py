@@ -35,7 +35,7 @@ class StreamingConnection (comm.NullInterface):
 
     msg = {
       'type':'initialize',
-      'entities':dict([(n.entity.name, 
+      'entities':dict([(n.entity.name,
                    'circle' if isinstance(n.entity, api.HostEntity) else 'square')
                   for n in core.topo.values()]),
       #      'entities': {},
@@ -182,7 +182,7 @@ class StreamingInterface (object):
         bad.append(c)
     for c in bad:
       self._disconnect(c)
-  
+
   def send_console(self, text):
     #self.send({'type':'console','msg':text})
     pass
@@ -193,7 +193,7 @@ class StreamingInterface (object):
 
   def send_log(self, record):
     self.send(record)
-  
+
   def send_entity_down(self, name):
     self.send({
       'type':'delEntity',
@@ -207,7 +207,7 @@ class StreamingInterface (object):
       'kind':'square' if kind == 'switch' else 'circle',
       'label':name,
       })
-    
+
   def send_link_up(self, srcid, sport, dstid, dport):
     self.send({
       'type':'link',
@@ -216,7 +216,7 @@ class StreamingInterface (object):
       'node1_port':sport,
       'node2_port':dport,
       })
-  
+
   def packet (self, n1, n2, packet, duration, drop=False):
     m = {
       "type":"packet",
@@ -239,7 +239,7 @@ class StreamingInterface (object):
       'node1_port':sport,
       'node2_port':dport,
       })
-  
+
   def highlight_path (self, nodes):
     """ Sends a path to the GUI to be highlighted """
     nodes = [n.name for n in nodes]
