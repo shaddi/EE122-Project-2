@@ -71,7 +71,7 @@ class DiscoveryPacket (Packet):
     """
     def __init__(self, src, is_link_up):
         Packet.__init__(self, src=src)
-        self.is_link_up = upness
+        self.is_link_up = is_link_up
 
 class RoutingUpdate (Packet): 
     """
