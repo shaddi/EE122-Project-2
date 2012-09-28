@@ -73,6 +73,12 @@ class DiscoveryPacket (Packet):
         Packet.__init__(self, src=src)
         self.is_link_up = is_link_up
 
+    def __repr__ (self):
+        return "<%s from %s->%s, %s>" % (self.__class__.__name__,
+                                 self.src.name if self.src else None,
+                                 self.dst.name if self.dst else None,
+                                 self.is_link_up)
+
 class RoutingUpdate (Packet): 
     """
     A Routing Update message to use with your RIPRouter implementation.
