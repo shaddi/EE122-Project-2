@@ -311,8 +311,8 @@ class TopoNode (object):
       other.ports[otherPort] = None
       self.ports[index] = None
 
-      self.send(DiscoveryPacket(self.entity, False), index)
-      self.send(DiscoveryPacket(other, False), otherPort)
+      self.send(sim.basics.DiscoveryPacket(self.entity, False), index)
+      self.send(sim.basics.DiscoveryPacket(other, False), otherPort)
 
     remove = [index for index,value in enumerate(self.ports)
               if value is not None and value.dst is topoEntity]
