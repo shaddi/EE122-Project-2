@@ -308,11 +308,11 @@ class TopoNode (object):
       other = port.dst
       otherPort = port.dstPort
       events.send_link_down(self.entity.name, index, other.entity.name, otherPort)
-      other.ports[otherPort] = None
-      self.ports[index] = None
-
       self.send(sim.basics.DiscoveryPacket(self.entity, False), index)
       topoEntity.send(sim.basics.DiscoveryPacket(topoEntity.entity, False), otherPort)
+
+      other.ports[otherPort] = None
+      self.ports[index] = None
 
     remove = [index for index,value in enumerate(self.ports)
               if value is not None and value.dst is topoEntity]
