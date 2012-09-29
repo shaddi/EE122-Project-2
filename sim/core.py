@@ -308,8 +308,8 @@ class TopoNode (object):
       other = port.dst
       otherPort = port.dstPort
       events.send_link_down(self.entity.name, index, other.entity.name, otherPort)
-      self.send(sim.basics.DiscoveryPacket(self.entity, False), index)
-      topoEntity.send(sim.basics.DiscoveryPacket(topoEntity.entity, False), otherPort)
+      topoEntity.entity.handle_rx(sim.basics.DiscoveryPacket(self.entity, False), otherPort)
+      self.entity.handle_rx(sim.basics.DiscoveryPacket(topoEntity.entity, False), index)
 
       other.ports[otherPort] = None
       self.ports[index] = None
