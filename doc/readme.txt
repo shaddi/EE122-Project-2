@@ -15,7 +15,7 @@ sim/topo.py - You can use this to create your own topologies/scenarios.  See
               help(topo).
 scenarios/*.py - Test topologies and scenarios for you to use.  See
                  help(scenarios).
-tests/*.py - Automated test case examples.
+tests/*.py - Automated test case examples, including compatibility test.
 
 
 Getting Started
@@ -112,3 +112,7 @@ test cases; we don't provide a "test framework" per se for this assignment. We
 do provide one test case that is very similar to one of the actual grading test
 cases to give you an idea of how you might write an automated test case for
 your submission.
+
+VERY IMPORTANT: We also include a "compatibility test" in the test case folder.
+Your submission MUST pass this test before you submit it to ensure we'll be
+able to grade it. Submissions that fail this test will receive a score of zero!
