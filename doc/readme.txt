@@ -113,6 +113,7 @@ do provide one test case that is very similar to one of the actual grading test
 cases to give you an idea of how you might write an automated test case for
 your submission.
 
-VERY IMPORTANT: We also include a "compatibility test" in the test case folder.
-Your submission MUST pass this test before you submit it to ensure we'll be
-able to grade it. Submissions that fail this test will receive a score of zero!
+VERY IMPORTANT: We also include a stand-alone "compatibility test"
+(tests/compat_test.py) in the test case folder. Your submission MUST pass this
+test before you submit it to ensure we'll be able to grade it. Submissions that
+fail this test will receive a score of zero!
