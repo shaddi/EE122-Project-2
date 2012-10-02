@@ -111,8 +111,12 @@ Since you can create your own custom topologies, it's easy to write your own
 test cases; we don't provide a "test framework" per se for this assignment. We
 do provide one test case that is very similar to one of the actual grading test
 cases to give you an idea of how you might write an automated test case for
-your submission.
+your submission. You can run a test by entering at your command prompt (*not*
+in simulator.py):
 
-VERY IMPORTANT: We also include a "compatibility test" in the test case folder.
-Your submission MUST pass this test before you submit it to ensure we'll be
-able to grade it. Submissions that fail this test will receive a score of zero!
+    $ python tests/<test case>.py
+
+VERY IMPORTANT: We also include a stand-alone "compatibility test"
+(tests/compat_test.py) in the test case folder. Your submission MUST pass this
+test before you submit it to ensure we'll be able to grade it. Submissions that
+fail this test will receive a score of zero!
