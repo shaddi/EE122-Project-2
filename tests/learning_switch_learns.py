@@ -7,7 +7,6 @@ sys.path.append('.')
 
 from sim.api import *
 from sim.basics import *
-from rip_router import RIPRouter
 from learning_switch import LearningSwitch as switch
 import sim.topo as topo
 import os
